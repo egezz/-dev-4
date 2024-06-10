@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        :root{
+            --primary-color: #007bff;
+            
+        }
+    </style>
 </head>
 <body>
     <h1>soru1</h1>
+    <span>1 den 99 a kadar olan sayıları for döngüsü ile sırala</span>
+    <button id="siralaBtn" onclick="sirala()">Sırala</button>
+    <br/>
+    <span>Rastgele butonuna bastığımda bu sayılardan birini seçip kırmızıya boy</span>
+    <button id="rastgeleBtn" disabled onclick="rastgeleBtn()">Rastgele Sayı Seç</button>
+    <div id="sonuc"></div>
+
+    <script>
+        
+        function sirala() {
+            var sonucEl=document.getElementById("sonuc");
+            var rastgeleBtn=document.getElementById("rastgeleBtn");
+            var siralaBtn=document.getElementById("siralaBtn");
+            
+            for (var i = 1; i <=99; i++) {
+                sonucEl.innerHTML+=i+" ";
+                
+                if(i%10==0){
+                    sonucEl.innerHTML+="<br>";
+                }
+        
+            }
+            rastgeleBtn.disabled=false;
+            siralaBtn.disabled=true;
+        }
+        function rastgeleBtn() {
+            var sonucEl=document.getElementById("sonuc");
+            var rastgeleBtn=document.getElementById("rastgeleBtn");
+            var siralaBtn=document.getElementById("siralaBtn");
+            var rastgeleSayi=sayilar[Math.floor(Math.random()*sayilar.length)];
+            sonucEl.innerHTML=rastgeleSayi;
+            sonucEl.style.color="red";
+            rastgeleBtn.disabled=true;
+            siralaBtn.disabled=false;
+        }
+    </script>
+
 </body>
 </html>
