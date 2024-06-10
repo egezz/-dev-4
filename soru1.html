@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        :root{
-            --primary-color: #007bff;
-            
-        }
-    </style>
 </head>
 <body>
     <h1>soru1</h1>
@@ -17,38 +11,42 @@
     <button id="siralaBtn" onclick="sirala()">Sırala</button>
     <br/>
     <span>Rastgele butonuna bastığımda bu sayılardan birini seçip kırmızıya boy</span>
-    <button id="rastgeleBtn" disabled onclick="rastgeleBtn()">Rastgele Sayı Seç</button>
+    <button id="rastgeleBtn" disabled onclick="rastgeleDizi(event)">Rastgele Sayı Seç</button>
     <div id="sonuc"></div>
 
-    <script>
-        
-        function sirala() {
-            var sonucEl=document.getElementById("sonuc");
-            var rastgeleBtn=document.getElementById("rastgeleBtn");
-            var siralaBtn=document.getElementById("siralaBtn");
-            
-            for (var i = 1; i <=99; i++) {
-                sonucEl.innerHTML+=i+" ";
-                
-                if(i%10==0){
-                    sonucEl.innerHTML+="<br>";
+   <script>
+       function sirala(){
+            var sonucEl = document.getElementById("sonuc");
+            var siralaBtn = document.getElementById("siralaBtn");
+            var rastgeleBtn = document.getElementById("rastgeleBtn");
+            for (var i = 1; i < 100; i++) {
+                sonucEl.innerHTML += `<span>${i}</span>`+" ";
+                if(i % 10 == 0){
+                    sonucEl.innerHTML += "<br/>";
                 }
-        
             }
-            rastgeleBtn.disabled=false;
-            siralaBtn.disabled=true;
+            siralaBtn.disabled = true;
+            rastgeleBtn.disabled = false;
+           
         }
-        function rastgeleBtn() {
-            var sonucEl=document.getElementById("sonuc");
-            var rastgeleBtn=document.getElementById("rastgeleBtn");
-            var siralaBtn=document.getElementById("siralaBtn");
-            var rastgeleSayi=sayilar[Math.floor(Math.random()*sayilar.length)];
-            sonucEl.innerHTML=rastgeleSayi;
-            sonucEl.style.color="red";
-            rastgeleBtn.disabled=true;
-            siralaBtn.disabled=false;
+        function rastgeleDizi() {
+            var rastgeleIndex = Math.floor(Math.random() * 99) + 1;
+            var spans = document.querySelectorAll('#sonuc span');
+            spans[rastgeleIndex - 1].style.color = "red"; 
+
         }
-    </script>
+            
+        
+            
+        
+      
+
+
+
+
+
+
+   </script>
 
 </body>
 </html>
