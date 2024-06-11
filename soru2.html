@@ -8,9 +8,9 @@
 <body>
     <h1>Sayısal Loto Oyunu</h1>
     <label for="">Aşağıdaki inputlara tahminlerinizi giriniz;</label>
-    <br/>
-    <br/>
-    <br/>
+    </br>
+    </br>
+    </br>
     <input type="number" class="tah" id="input1" onblur="kontrol()">
     <input type="number" class="tah" id="input2" onblur="kontrol()">
     <input type="number" class="tah" id="input3" onblur="kontrol()">
@@ -18,27 +18,30 @@
     <input type="number" class="tah" id="input5" onblur="kontrol()">
     <input type="number" class="tah" id="input6" onblur="kontrol()">
     <button id="tahminBtn" onclick="tahmingir()">Tahmin gir</button>
-    <br/>
+    </br>
     <div id="uyarı"></div>
-    <br/>
+    </br>
     <hr/>
-    <br/>
-    <button id="kuraBtn" onclick="kuracek()" >Kurayı Çek</button>
-    <br/>
-    <br/>
+    </br>
+    <button id="kuraBtn" disabled onclick="kuracek()" >Kurayı Çek</button>
+    </br>
+    </br>
     <span>Loto sayıları</span>
-    <br/>
-    <br/>
+    </br>
+    </br>
     <input type="number" class="kur" disabled id="kurasec1">
     <input type="number" class="kur" disabled id="kurasec2">
     <input type="number" class="kur" disabled id="kurasec3">
     <input type="number" class="kur" disabled id="kurasec4">
     <input type="number" class="kur" disabled id="kurasec5">
     <input type="number" class="kur" disabled id="kurasec6">
-    <br/>
-    <span id="bilinen"></span>
-    <br/>
-    <br/>
+    </br>
+    </br>
+    <label id="bilinen"></label>
+    <label id="kacAdet"></label>
+
+    </br>
+    </br>
 
 <script>
 
@@ -111,16 +114,22 @@
     kuraBtn.disabled = true;
 
     
-    var bilinen = document.querySelectorAll(".tah");
-    for (var i = 0; i < bilinen.length; i++) {
-    bilinen[i].innerHTML = "Bilinen sayılar: ";
-    for (var j = 0; j < kur.length; j++) {
-        if (tahminler.includes(kuralar[j])) {
-            bilinen[i].innerHTML += `${kuralar[j]} `;
+    var tahminler = [];
+    var bilinen = document.getElementById("bilinen");
+        for (var i = 1; i <= 6; i++) {
+            tahminler.push(parseInt(document.getElementById("input" + i).value));
         }
+
+        for (var j = 0; j < kuralar.length; j++) {
+            if (tahminler.includes(kuralar[j])) {
+                bilinen.innerHTML += `Bilinen Sayılar:${kuralar[j]+"</br>"} `;
+                var kacAdet = document.getElementById("kacAdet");
+                kacAdet.innerHTML = `Bilinen Sayı Adedi:${bilinen.innerHTML.split("</br>").length}`;
+            }
+        }
+        
     }
-}
-}
+
 
 
 
